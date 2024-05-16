@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot com Gemini Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2 class="chat-title">Chatbot com Gemini Pro</h2>
+        </div>
+        <div class="chat-body" id="chat-body">
+            </div>
+        <div class="chat-footer">
+            <input type="text" id="mensagem" id="mensagemInput" placeholder="Digite sua mensagem...">
+            <button onclick="enviarMensagem()">Enviar</button>
+        </div>
+    </div>
+    <script>
+        function enviarMensagem() {
+          const prompt = document.getElementById('mensagem').value;
+          document.getElementById('mensagem').value = ''; // Limpa o campo de mensagem
+      
+          // Exibe a mensagem do usuário no chat
+          const chatBody = document.getElementById('chat-body');
+          const userMessage = document.createElement('div');
+          userMessage.classList.add('message', 'user-message');
+          userMessage.innerHTML = `<p class="message-text">${prompt}</p>`;
+          chatBody.appendChild(userMessage);
+      
+          // Envia a mensagem para o back-end
+          fetch('/mensagem', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ prompt }),
+          })
+          .then(response => response.json())
+          .then(data => {
+            // Exibe a resposta do bot no chat
+            const botMessage = document.createElement('div');
+            botMessage.classList.add('message', 'bot-message');
+            botMessage.innerHTML = `<p class="message-text">${data.resposta}</p>`;
+            chatBody.appendChild(botMessage);
+      
+            // Rola o chat para baixo para mostrar a última mensagem
+            chatBody.scrollTop = chatBody.scrollHeight;
+          })
+          .catch(error => console.error('Erro ao enviar mensagem:', error));
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+  const mensagemInput = document.getElementById('mensagemInput');
+
+  mensagemInput.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+      document.getElementById('enviarButton').click();
+    }
+  });
+});
+      </script>
+      
+
+</body>
+</html>

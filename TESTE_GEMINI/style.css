@@ -1,0 +1,95 @@
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #ece5dd;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .chat-container {
+    width: 400px;
+    height: 600px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Organiza os elementos em coluna */
+  }
+  
+  .chat-header {
+    background-color: #075e54;
+    color: #fff;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0; /* Impede que o cabeçalho seja comprimido */
+  }
+  
+  .chat-title {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .chat-body {
+    flex-grow: 1;  /* Permite que o corpo do chat ocupe o espaço disponível */
+    overflow-y: auto;
+    padding: 20px;
+  }
+  
+  .message {
+    margin-bottom: 15px;
+    display: flex; /* Organiza a mensagem e o nome em linha */
+    align-items: flex-end;
+  }
+  
+  .user-message {
+    justify-content: flex-end;  /* Alinha a mensagem do usuário à direita */
+  }
+  
+  .user-message .message-text {
+    background-color: #dcf8c6;
+    color: #000;
+    padding: 10px;
+    border-radius: 8px;
+    display: inline-block;
+    max-width: 70%;
+    border-top-right-radius: 0; /* Ajusta o canto superior direito */
+  }
+  
+  .bot-message .message-text {
+    background-color: #fff;
+    color: #000;
+    padding: 10px;
+    border-radius: 8px;
+    display: inline-block;
+    max-width: 70%;
+    border-top-left-radius: 0; /* Ajusta o canto superior esquerdo */
+  }
+  
+  .message-input {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    flex-shrink: 0; /* Impede que o input seja comprimido */
+  }
+  
+  input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+  
+  button {
+    background-color: #075e54;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
